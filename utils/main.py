@@ -25,34 +25,12 @@ class Stack:
         return data
 
 
-stack = Stack()
-stack.push('data1')
-data = stack.pop()
-
-# stack is now empty
-print(stack.top)
-
-# pop() remove item and return returned data
-print(data)
-
-stack = Stack()
-stack.push('data1')
-stack.push('data2')
-data = stack.pop()
-
-# now the last element contains data1
-print(stack.top.data)
-
-# data of the deleted item
-print(data)
-
 queue = Queue()
 queue.enqueue('data1')
 queue.enqueue('data2')
 queue.enqueue('data3')
+print(queue.dequeue())
+print(queue.dequeue())
+print(queue.dequeue())
+print(queue.dequeue())
 
-print(queue.head.data)  
-print(queue.head.next_node.data)
-print(queue.tail.data)
-print(queue.tail.next_node)
-print(queue.tail.next_node.data)

@@ -3,33 +3,26 @@ from utils.custom_queue import Queue
 
 
 class TestQueue(unittest.TestCase):
-    def test_enqueue(self):
+
+    def test_dequeue_empty_queue(self):
+        queue = Queue()
+        self.assertIsNone(queue.dequeue())
+
+    def test_enqueue_dequeue(self):
         queue = Queue()
         queue.enqueue('data1')
         queue.enqueue('data2')
         queue.enqueue('data3')
+        self.assertEqual(queue.dequeue(), 'data1')
+        self.assertEqual(queue.dequeue(), 'data2')
+        self.assertEqual(queue.dequeue(), 'data3')
+        self.assertIsNone(queue.dequeue())
 
-        self.assertEqual(queue.head.data, 'data1')
-        self.assertEqual(queue.head.next_node.data, 'data2')
-        self.assertEqual(queue.tail.data, 'data3')
-        self.assertIsNone(queue.tail.next_node)
-
-    def test_enqueue_empty_queue(self):
-        queue = Queue()
-        queue.enqueue('data')
-
-        self.assertEqual(queue.head.data, 'data')
-        self.assertEqual(queue.tail.data, 'data')
-
-    def test_enqueue_one_element_queue(self):
+    def test_enqueue_dequeue_single_element(self):
         queue = Queue()
         queue.enqueue('data1')
-        queue.enqueue('data2')
-
-        self.assertEqual(queue.head.data, 'data1')
-        self.assertEqual(queue.head.next_node.data, 'data2')
-        self.assertEqual(queue.tail.data, 'data2')
-        self.assertIsNone(queue.tail.next_node)
+        self.assertEqual(queue.dequeue(), 'data1')
+        self.assertIsNone(queue.dequeue())
 
 
 if __name__ == '__main__':
