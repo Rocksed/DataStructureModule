@@ -39,10 +39,48 @@ class LinkedList:
         ll_string += ' None'
         print(ll_string)
 
+    def to_list(self):
+        lst = []
+        node = self.head
+        while node:
+            lst.append(node.data)
+            node = node.next_node
+        return lst
+
+    def get_data_by_id(self, id_val):
+        node = self.head
+        while node:
+            try:
+                if node.data['id'] == id_val:
+                    return node.data
+            except TypeError:
+                print("Данные не являются словарем или в словаре нет id.")
+            node = node.next_node
+        return None
+
 
 ll = LinkedList()
-ll.insert_beginning({'id': 1})
-ll.insert_at_end({'id': 2})
-ll.insert_at_end({'id': 3})
-ll.insert_beginning({'id': 0})
-ll.print_ll()
+
+ll.insert_beginning({'id': 1, 'username': 'lazzy508509'})
+ll.insert_at_end({'id': 2, 'username': 'mik.roz'})
+ll.insert_at_end({'id': 3, 'username': 'mosh_s'})
+ll.insert_beginning({'id': 0, 'username': 'serebro'})
+
+# to_list() method
+lst = ll.to_list()
+for item in lst:
+    print(item)
+
+# get_data_by_id()
+user_data = ll.get_data_by_id(3)
+print(user_data)
+
+# Operation of the try/except block
+ll = LinkedList()
+ll.insert_beginning({'id': 1, 'username': 'lazzy508509'})
+ll.insert_at_end('idusername')
+ll.insert_at_end([1, 2, 3])
+ll.insert_at_end({'id': 2, 'username': 'mosh_s'})
+
+user_data = ll.get_data_by_id(2)
+print(user_data)
